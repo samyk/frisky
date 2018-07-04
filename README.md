@@ -10,4 +10,4 @@ Instruments to assist in binary application reversing, geared towards walled gar
 
 ## Contact
 
-Shaped by [@SamyKamkar](https://twitter.com/samykamkar]) / [https://samy.pl]()
+Shaped by [@SamyKamkar](https://twitter.com/samykamkar) / [https://samy.pl](samy.pl)
