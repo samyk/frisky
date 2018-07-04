@@ -8,7 +8,7 @@ Instruments to assist in binary application reversing and augmentation, geared t
 - [ldid / ldid2](https://github.com/samyk/ldid) - When building recent iOS jailbreaks dependent on SHA256 signatures, `ldid2` is required. This repo will allow you to easily compile `ldid` and `ldid2` for signing and modifying an iOS binary's entitlements, and thus jailbreaking a device.
   - macOS: `ldid{2} -e MobileSafari` # to dump MobileSafari's entitlements
   - macOS: `ldid{2} -S cat` # to sign cat
-- Extract shared libraries for static analysis used by apps not directly available on iOS filesystem for static analysis:
+- Extract shared libraries used by apps not directly available on iOS filesystem for static analysis:
   - Grab the patched [dyld-210.2.3-patched](dyld-210.2.3) and run the custom [dsc_extractor](dyld-210.2.3-patched/launch-cache/dsc_extractor) (you may need to compile from the xcodeproject) to dump iOS' `/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm*` into individual dylibs:
   - macOS: `mkdir -p dylibs && dyld-210.2.3-patched/launch-cache/dsc_extractor /path/to/copied/dyld_shared_cache_arm* dylibs`
 - sniff network traffic from (non-jailbroken) iOS device from your mac:
