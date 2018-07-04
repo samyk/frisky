@@ -2,7 +2,7 @@
 
 Instruments to assist in binary application reversing and augmentation, geared towards walled gardens like iOS. Most, if not all, recently tested on iOS 11.1.2 and macOS 10.12.6.
 
-![iOS](assets/ios-inj.png)
+![iOS](assets/ios-inj.jpg)
 
 - [frida-url-interceptor.js](frida-url-interceptor.js) - Intercepts all URLs of an iOS/macOS application, allowing you to trace and alter/intercept all network traffic, including https, per app before encryption and after decryption:
   - iOS: open app of interest first, e.g. Safari
