@@ -20,9 +20,10 @@ Instruments to assist in binary application reversing and augmentation, geared t
 ##### Discover and modify library/framekwork function call arguments and return codes via [Frida](https://www.frida.re/):
   - iOS: open app of interest first, e.g. Twitter
   - macOS: `frida-trace -U -i "*tls*" Twitter` # hook all calls matching */tls/i* for the Twitter app
+  - macOS: Now `__handlers__/libcoretls.dylib/tls_private_key_create.js` will be generated:
     - `onEnter`'s `args[2]` is first argument to the function
       - Extract string from first argument: `Memory.readUtf8String(args[2])` or `ObjC.Object(args[2]))`
-    -  `onLeave`'s `retval` is the return value
+    - `onLeave`'s `retval` is the return value
       - Print out retval: `log(retval.toInt32())`
       - Adjust retval: `retval.replace(0)`
 
