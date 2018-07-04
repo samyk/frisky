@@ -14,7 +14,7 @@ Instruments to assist in binary application reversing and augmentation, geared t
   - macOS: `ldid{2} -S cat` # to sign cat
 
 ##### Extract shared libraries used by apps not directly available on iOS filesystem for static analysis:
-  - Grab the patched [dyld-210.2.3-patched](dyld-210.2.3-patched) and run the custom [dsc_extractor](dyld-210.2.3-patched/launch-cache/dsc_extractor) (you may need to compile from the xcodeproject) to dump iOS' `/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm*` into individual dylibs:
+  - Grab the patched [dyld-210.2.3-patched](dyld-210.2.3-patched) (included in this repo) and run the custom [dsc_extractor](dyld-210.2.3-patched/launch-cache/dsc_extractor) (you may need to compile from the xcodeproject) to dump iOS' `/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm*` into individual dylibs:
   - macOS: `mkdir -p dylibs && dyld-210.2.3-patched/launch-cache/dsc_extractor /path/to/copied/dyld_shared_cache_arm* dylibs`
 
 ##### Discover and modify library/framekwork function call arguments and return codes via [Frida](https://www.frida.re/):
