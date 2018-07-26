@@ -17,7 +17,7 @@ Instruments to assist in binary application reversing and augmentation, geared t
   - Grab the patched [dyld-210.2.3-patched](dyld-210.2.3-patched) (included in this repo) and run the custom [dsc_extractor](dyld-210.2.3-patched/launch-cache/dsc_extractor) (you may need to compile from the xcodeproject) to dump iOS' `/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm*` into individual dylibs:
   - macOS: `mkdir -p dylibs && dyld-210.2.3-patched/launch-cache/dsc_extractor /path/to/copied/dyld_shared_cache_arm* dylibs`
 
-##### Discover and modify library/framekwork function call arguments and return codes via [Frida](https://www.frida.re/):
+##### Discover and modify library/framework function call arguments and return codes via [Frida](https://www.frida.re/):
   - iOS: open app of interest first, e.g. Twitter
   - macOS: `frida-trace -U -i "*tls*" Twitter` # hook all calls matching */tls/i* for the Twitter app
   - macOS: Now `__handlers__/libcoretls.dylib/tls_private_key_create.js` will be generated:
