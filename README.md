@@ -36,7 +36,7 @@ Instruments to assist in binary application reversing and augmentation, geared t
 
 ##### View system logs on iOS live using [deviceconsole](https://github.com/rpetrich/deviceconsole):
   - macOS: `deviceconsole`
-  - macOS: `unbuffer deviceconsole | grep something` # keeps pretty colors`
+  - macOS: `unbuffer deviceconsole | grep something` # keeps pretty colors
   		- requires `expect`, can be installed via `sudo port install expect` or `brew install expect`
 
 ##### Electra: allow jailbroken Tweaks to appear in Settings:
