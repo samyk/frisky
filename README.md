@@ -20,12 +20,24 @@ Instruments to assist in binary application reversing and augmentation, geared t
 ##### Discover and modify library/framework function call arguments and return codes via [Frida](https://www.frida.re/):
   - iOS: open app of interest first, e.g. Twitter
   - macOS: `frida-trace -U -i "*tls*" Twitter` # hook all calls matching */tls/i* for the Twitter app
+  - macOS: `frida-trace -U -f com.atebits.Tweetie2 "-[* *SSL*]" -m "-[* *TLS*]"` # hook obj c calls
   - macOS: Now `__handlers__/libcoretls.dylib/tls_private_key_create.js` will be generated:
     - `onEnter`'s `args[2]` is first argument to the function
       - Extract string from first argument: `Memory.readUtf8String(args[2])` or `ObjC.Object(args[2]))`
+      - Adjust args (bool: set true): `args[2] = ptr(1)`
     - `onLeave`'s `retval` is the return value
       - Print out retval: `log(retval.toInt32())`
       - Adjust retval: `retval.replace(0)`
+
+##### iOS - bypassing TLS certificate pinning / allow untrusted certs in Facebook SocketRocket
+  - macOS: frida-trace -U -f com.domain.app -m "-[* *SSLCert*]"
+  - macOS: update __handlers__/__SRWebSocket_initWithURLRequest_8e21c6e0.js:
+```
+  onEnter: function (log, args, state) {
+    log('-[SRWebSocket initWithURLRequest:' + args[2] + ' protocols:' + args[3] + ' allowsUntrustedSSLCertificates:' + args[4] + ']')
+    args[4] = ptr(1) // set allowsUntrustedSSLCertificates = true
+  },
+```
 
 ##### Sniff network traffic from (non-jailbroken/jailbroken) iOS device from your mac:
   - macOS: ```system_profiler SPUSBDataType|perl -n0e'`rvictl -s $1`if/iP(?:hone|ad):.*?Serial Number: (\S+)/s';sudo tcpdump -i rvi0```
